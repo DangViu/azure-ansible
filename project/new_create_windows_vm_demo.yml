@@ -80,6 +80,7 @@
         admin_password: "{{ win_admin_password }}"
         ssh_password_enabled: true
         managed_disk_type: Standard_LRS
+        public_ip_per_vm: True
         image:
           offer: 0001-com-ubuntu-server-focal
           publisher: canonical
