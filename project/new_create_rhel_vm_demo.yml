@@ -1,28 +1,28 @@
 ---
-- name: Create Azure VM
+- name: New Create Azure VM
   hosts: localhost
   connection: local
   gather_facts: false
   tasks:
-    - name: Create resource group
+    - name: qwCreate resource group
       azure.azcollection.azure_rm_resourcegroup:
         name: "{{ resource_group_name }}"
         location: "{{ region }}"
 
-    - name: Create virtual network
+    - name: qwCreate virtual network
       azure.azcollection.azure_rm_virtualnetwork:
         resource_group: "{{ resource_group_name }}"
         name: "{{ vnet_name }}"
         address_prefixes: "{{ vnet_cidr }}"
 
-    - name: Add subnet
+    - name: qwAdd subnet
       azure.azcollection.azure_rm_subnet:
         resource_group: "{{ resource_group_name }}"
         name: "{{ subnet_name }}"
         address_prefix: "{{ subnet_cidr }}"
         virtual_network: "{{ vnet_name }}"
 
-    - name: Create public IP address
+    - name: qwCreate public IP address
       azure.azcollection.azure_rm_publicipaddress:
         resource_group: "{{ resource_group_name }}"
         allocation_method: Static
@@ -30,19 +30,19 @@
       register: output_ip_address
       when: survey_public_ip == "True"
 
-    - name: Dump public IP for VM which will be created
+    - name: qwqDump public IP for VM which will be created
       debug:
         msg: "The public IP is {{ output_ip_address.state.ip_address }}"
       when: survey_public_ip == "True"
 
-    - name: Set Stat for Ansible Controller
+    - name: qwSet Stat for Ansible Controller
       set_stats:
         data: 
           azure_vm_public_ip: "{{ output_ip_address.state.ip_address }}"
         per_host: false
       when: survey_public_ip == "True"
 
-    - name: Create Network Security Group that allows SSH and RDP
+    - name: qwCreate Network Security Group that allows SSH and RDP
       azure.azcollection.azure_rm_securitygroup:
         resource_group: "{{ resource_group_name }}"
         name: "{{ network_sec_group_name }}"
@@ -60,7 +60,7 @@
             priority: 1002
             direction: Inbound
 
-    - name: Create virtual network interface card
+    - name: qwCreate virtual network interface card
       azure.azcollection.azure_rm_networkinterface:
         resource_group: "{{ resource_group_name }}"
         name: "{{ rhel_nic_name }}"
@@ -69,7 +69,7 @@
         security_group: "{{ network_sec_group_name }}"
       when: survey_public_ip != "True"
 
-    - name: Create virtual network interface card
+    - name: qwCreate virtual network interface card
       azure.azcollection.azure_rm_networkinterface:
         resource_group: "{{ resource_group_name }}"
         name: "{{ rhel_nic_name }}"
@@ -79,7 +79,7 @@
         security_group: "{{ network_sec_group_name }}"
       when: survey_public_ip == "True"
 
-    - name: Create VM
+    - name: qwCreate VM
       azure.azcollection.azure_rm_virtualmachine:
         resource_group: "{{ resource_group_name }}"
         name: "{{ rhel_vm_name }}"
