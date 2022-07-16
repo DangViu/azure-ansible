@@ -65,28 +65,28 @@
         public_ip_name: "{{ win_public_ip_name }}"
         security_group: "{{ network_sec_group_name }}"
 
-- name: Create VMSS
-  azure_rm_virtualmachinescaleset:
-    resource_group: "{{ resource_group_name }}"
-    name: "{{ win_vm_name }}"
-    vm_size: Standard_NC24s_v3
-    capacity: 4
-    virtual_network_name: "{{ vnet_name }}"
-    upgrade_policy: Manual
-    subnet_name: "{{ subnet_name }}"
-    terminate_event_timeout_minutes: 10
-    scale_in_policy: NewestVM
-    admin_username: "{{ win_admin_user }}"
-    admin_password: "{{ win_admin_password }}"
-    ssh_password_enabled: true
-    managed_disk_type: Standard_LRS
-    image:
-      offer: WindowsServer
-      publisher: MicrosoftWindowsServer
-      sku: "{{ win_vm_sku }}"
-      version: latest
-    data_disks:
-      - lun: 0
-        disk_size_gb: 64
-        caching: ReadWrite
+    - name: Create VMSS
+      azure_rm_virtualmachinescaleset:
+        resource_group: "{{ resource_group_name }}"
+        name: "{{ win_vm_name }}"
+        vm_size: Standard_NC24s_v3
+        capacity: 4
+        virtual_network_name: "{{ vnet_name }}"
+        upgrade_policy: Manual
+        subnet_name: "{{ subnet_name }}"
+        terminate_event_timeout_minutes: 10
+        scale_in_policy: NewestVM
+        admin_username: "{{ win_admin_user }}"
+        admin_password: "{{ win_admin_password }}"
+        ssh_password_enabled: true
         managed_disk_type: Standard_LRS
+        image:
+          offer: WindowsServer
+          publisher: MicrosoftWindowsServer
+          sku: "{{ win_vm_sku }}"
+          version: latest
+        data_disks:
+          - lun: 0
+            disk_size_gb: 64
+            caching: ReadWrite
+            managed_disk_type: Standard_LRS
