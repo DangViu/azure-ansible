@@ -70,7 +70,7 @@
         resource_group: "{{ resource_group_name }}"
         name: "{{ win_vm_name }}"
         vm_size: Standard_NC24s_v3
-        capacity: 4
+        capacity: 3
         virtual_network_name: "{{ vnet_name }}"
         upgrade_policy: Manual
         subnet_name: "{{ subnet_name }}"
