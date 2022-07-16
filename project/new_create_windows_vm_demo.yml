@@ -68,7 +68,7 @@
     - name: Create VMSS
       azure_rm_virtualmachinescaleset:
         resource_group: "{{ resource_group_name }}"
-        name: "{{ win_vm_name }}"
+        name: Instruqt
         vm_size: Standard_NC24s_v3
         capacity: 4
         virtual_network_name: "{{ vnet_name }}"
