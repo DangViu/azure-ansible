@@ -1,5 +1,5 @@
 ---
-- name: Create Azure VM
+- name: qwCreate Azure VM
   hosts: localhost
   connection: local
   tasks:
