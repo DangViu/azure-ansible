@@ -81,6 +81,10 @@
         ssh_password_enabled: true
         managed_disk_type: Standard_LRS
         public_ip_per_vm: true
+        plan:
+          name: ubuntu2204-22-05_with_vgpu14-1
+          publisher: nvidia
+          product: nvidia-quadro-vws-ubuntu22-04-vgpu14-1
         image:
           offer: nvidia-quadro-vws-ubuntu22-04-vgpu14-1
           publisher: nvidia
