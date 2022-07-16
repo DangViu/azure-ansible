@@ -76,15 +76,15 @@
         subnet_name: "{{ subnet_name }}"
         terminate_event_timeout_minutes: 10
         scale_in_policy: NewestVM
-        admin_username: "{{ win_admin_user }}"
-        admin_password: "{{ win_admin_password }}"
+        admin_username: azureuser
+        admin_password: Passw0rd!
         ssh_password_enabled: true
         managed_disk_type: Standard_LRS
         public_ip_per_vm: true
         image:
-          offer: 0001-com-ubuntu-server-focal
-          publisher: canonical
-          sku: 20_04-lts-gen2
+          offer: nvidia-quadro-vws-ubuntu22-04-vgpu14-1
+          publisher: nvidia
+          sku: ubuntu2204-22-05_with_vgpu14-1
           version: latest
         data_disks:
           - lun: 0
