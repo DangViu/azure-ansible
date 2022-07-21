@@ -5,7 +5,7 @@
   gather_facts: true
   tasks:
     - name: Create new resource group
-      ansible.builtin.command: ls
+      ansible.builtin.command: echo Hello
       args:
         chdir: '~/'
       register: output_ip_address
