@@ -8,3 +8,7 @@
       ansible.builtin.command: ls
       args:
         chdir: '~/'
+      register: output_ip_address
+    - name: Dump public IP for VM which will be created
+      debug:
+        msg: "The public IP is {{ output_ip_address }}"
