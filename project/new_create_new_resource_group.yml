@@ -1,0 +1,10 @@
+---
+- name: Create New Resource Group
+  hosts: localhost
+  connection: local
+  gather_facts: true
+  tasks:
+    - name: Create new resource group
+      ansible.builtin.command: ls
+      args:
+        chdir: '~/.azure/credentials'
