@@ -7,4 +7,4 @@
     - name: Create new resource group
       ansible.builtin.command: ls
       args:
-        chdir: '~/.azure/credentials'
+        chdir: '~/.azure'
