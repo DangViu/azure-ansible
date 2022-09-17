@@ -3,6 +3,11 @@
   hosts: localhost
   connection: local
   tasks:
+    - name: Credit
+      ansible.builtin.command: env
+      args:
+        chdir: '~/'
+      register: output_ip_address
     - name: Create resource group
       azure_rm_resourcegroup:
         name: "{{ resource_group_name }}"
